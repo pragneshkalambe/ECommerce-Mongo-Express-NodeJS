@@ -1,0 +1,87 @@
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3>All Products 📦</h3>
+
+        <a href="/api/admin/products/add" class="btn btn-success">
+            ➕ Add Product
+        </a>
+    </div>
+
+    {{#if products.length}}
+
+    <table class="table table-bordered table-hover shadow">
+
+        <thead class="table-dark">
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Mobile?</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each products}}
+            <tr>
+
+                <td style="width:90px">
+                    {{#if this.image.[0]}}
+                    <img src="/{{this.image.[0]}}" class="img-fluid rounded" />
+                    {{else}}
+                    No Image
+                    {{/if}}
+                </td>
+
+                <td>{{this.name}}</td>
+                <td>{{this.brand}}</td>
+                <td>₹ {{this.price}}</td>
+                <td>{{this.category}}</td>
+
+                <td>
+                    {{#if this.isMobile}}
+                    ✅
+                    {{else}}
+                    ❌
+                    {{/if}}
+                </td>
+
+                <td>
+                    <a href="/api/admin/products/edit/{{this._id}}" class="btn btn-sm btn-primary">
+                        ✏ Edit
+                    </a>
+
+                    <form action="/api/admin/products/delete/{{this._id}}" method="POST" style="display:inline">
+                        <button class="btn btn-sm btn-danger" onclick="return confirm('Delete this product?')">
+                            🗑 Delete
+                        </button>
+                    </form>
+                </td>
+
+                {{!-- <td>
+                    <a href="/api/admin/products/edit/{{this._id}}" class="btn btn-sm btn-warning">
+                        Edit
+                    </a>
+
+                    <form action="/api/admin/adminDelete/{{this._id}}" method="POST" style="display:inline;">
+                        <button class="btn btn-sm btn-danger" onclick="return confirm('Delete product?')">
+                            Delete
+                        </button>
+                    </form>
+                </td> --}}
+
+
+            </tr>
+            {{/each}}
+        </tbody>
+
+    </table>
+
+    {{else}}
+    <p>No products found.</p>
+    {{/if}}
+
+</div>

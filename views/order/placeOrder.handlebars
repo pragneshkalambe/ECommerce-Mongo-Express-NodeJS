@@ -1,0 +1,77 @@
+<section class="h-100 gradient-custom">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+
+```
+  <div class="col-md-8">
+
+    <div class="card mb-4">
+      <div class="card-header">
+        <h5>Confirm Your Order</h5>
+      </div>
+
+      <div class="card-body">
+
+        {{#if error}}
+          <div class="alert alert-danger">{{message}}</div>
+        {{/if}}
+
+        <h6 class="mb-3">Shipping Address</h6>
+        <p class="mb-1">{{address.city}}, {{address.state}}</p>
+        <p class="mb-1">{{address.country}} - {{address.zipcode}}</p>
+
+        <hr>
+
+        <h6 class="mb-3">Products</h6>
+
+        {{#each products}}
+          <div class="row mb-3 align-items-center">
+
+            <div class="col-md-2">
+              <img src="{{image.[0]}}" class="img-fluid rounded">
+            </div>
+
+            <div class="col-md-4">
+              <p class="mb-0">{{name}}</p>
+            </div>
+
+            <div class="col-md-2">
+              Qty: {{qty}}
+            </div>
+
+            <div class="col-md-2">
+              ₹{{price}}
+            </div>
+
+            <div class="col-md-2 fw-bold">
+              ₹{{multiply price qty}}
+            </div>
+
+          </div>
+        {{/each}}
+
+        <hr>
+
+        <div class="d-flex justify-content-between fw-bold">
+          <span>Total</span>
+          <span>₹{{totalAmount}}</span>
+        </div>
+
+      </div>
+
+      <div class="card-footer text-end">
+        <form method="post" action="/place-order">
+          <button class="btn btn-primary">
+            Proceed to Payment
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+```
+
+  </div>
+</section>

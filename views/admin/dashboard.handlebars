@@ -1,0 +1,59 @@
+<section class="bg-primary text-white">
+<div class="container py-5 mt-5">
+
+  <h2 class="text-center mb-4">Admin Dashboard 👑</h2>
+
+  <div class="row text-center g-4">
+
+    <div class="col-md-3">
+      <div class="card shadow-sm p-3">
+        <h6>Total Users</h6>
+        <h3> {{stats.totalUsers}} </h3>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card shadow-sm p-3">
+        <h6>Total Orders</h6>
+        <h3> {{stats.totalOrders}} </h3>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card shadow-sm p-3">
+        <h6>Total Products</h6>
+        <h3> {{stats.totalProducts}} </h3>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card shadow-sm p-3">
+        <h6>Total Revenue</h6>
+        <h3>₹ {{stats.totalRevenue}}</h3>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<section class="bg-primary text-white">
+
+<div class="container py-5 mt-5 mb-3">
+
+  <h4 class="mb-3">Product Management</h4>
+
+  <div class="d-flex gap-3">
+
+    <a href="/api/admin/products" class="btn btn-warning text-black">
+      View Products
+    </a>
+
+    <a href="/api/admin/products/add" class="btn btn-success">
+      Add Product
+    </a>
+
+  </div>
+
+</div>
+</section>

@@ -1,0 +1,26 @@
+<section>
+    <div class="d-flex align-items-center">
+
+    {{#if customerData}}
+
+        {{!-- Avatar --}}
+        <div class="dropdown">
+            <a href="" class="dropdown-toggle d-flex align-items-center hidden-arrow" data-toggle="dropdown" aria-haspopup="true">
+                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="" class="rounded-circle">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <a href="/GetProfile">Profile</a>
+                <a href="/GetOrders">Orders</a>
+                <a href="/Logout">Logout</a>
+            </ul>
+        </div>
+    {{else}}
+     
+     <div class="d-flex align-items-center">
+        <a href="" class="btn btn-outline-primary px-3 me-2">Login</a>
+     </div>
+
+    {{/if}}
+
+    </div>
+</section>

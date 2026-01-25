@@ -1,0 +1,25 @@
+{{#each products}}
+<div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="card daily-deal-card h-100 shadow-sm">
+        <img src="/{{this.image.[0]}}" class="card-img-top">
+
+        <div class="card-body text-center">
+            <h6>{{this.name}}</h6>
+
+            <p class="small text-muted text-truncate">
+                {{this.description}}
+            </p>
+
+            <p class="fw-bold text-success">
+                ₹{{this.price}}
+                <span class="text-danger">30% OFF</span>
+            </p>
+
+            <button class="btn btn-sm btn-primary w-100">
+                ADD TO CART
+            </button>
+        </div>
+    </div>
+</div>
+{{/each}}
+

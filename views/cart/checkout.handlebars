@@ -1,0 +1,127 @@
+<section class="h-100 gradient-custom">
+  <div class="container py-5">
+    <div class="row">
+
+
+      <!-- ================= BILLING / SHIPPING ================= -->
+      <div class="col-md-8 mb-4">
+        <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Shipping Details</h5>
+          </div>
+
+          <div class="card-body">
+
+            <form id="checkoutForm" method="POST" action="/place-order">
+
+              <!-- USER INFO -->
+              <div class="row mb-4">
+                <div class="col">
+                  <label class="form-label">Name</label>
+                  <input type="text" value="{{customer.name}}" class="form-control" disabled />
+                </div>
+
+                <div class="col">
+                  <label class="form-label">Email</label>
+                  <input type="email" value="{{customer.email}}" class="form-control" disabled />
+                </div>
+              </div>
+
+              <!-- ADDRESS SELECTION -->
+              <h6><strong>Select Delivery Address</strong></h6>
+
+              {{#each addresses}}
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="addressId" value="{{this._id}}" required>
+                <label class="form-check-label">
+                  {{this.label}}, {{this.city}}, {{this.state}} - {{this.zipcode}} <br>
+                  Phone: {{../phone}}
+                </label>
+              </div>
+              {{/each}}
+
+
+              {{!-- {{#if (eq addresses.length 0)}}
+              <p>No address found. Please add one.</p>
+              {{/if}} --}}
+
+              <hr class="my-4">
+
+              <!-- PAYMENT METHOD -->
+              <h6 class="mb-3">Payment Method</h6>
+
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="paymentMethod" value="ONLINE" checked>
+                <label class="form-check-label">
+                  Online Payment (UPI / Card / NetBanking)
+                </label>
+              </div>
+
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="paymentMethod" value="COD">
+                <label class="form-check-label">
+                  Cash on Delivery
+                </label>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= ORDER SUMMARY ================= -->
+      <div class="col-md-4 mb-4">
+        <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Order Summary</h5>
+          </div>
+
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+
+              {{#each product}}
+              <li class="list-group-item d-flex justify-content-between">
+                <div>
+                  <strong>{{name}}</strong>
+                  <p class="mb-0">Qty: {{qty}}</p>
+                </div>
+                <span>₹ {{price}}</span>
+              </li>
+              {{/each}}
+
+              <li class="list-group-item d-flex justify-content-between">
+                <strong>Shipping</strong>
+                <span>Free</span>
+              </li>
+
+              <li class="list-group-item d-flex justify-content-between">
+                <strong>Total Items</strong>
+                <span>{{cartCount}}</span>
+              </li>
+
+              <li class="list-group-item d-flex justify-content-between">
+                <strong>Total Amount</strong>
+                <strong>₹ {{totalAmount}}</strong>
+              </li>
+
+            </ul>
+
+            {{!-- <button type="submit" id="payBtn" form="checkoutForm"
+              class="btn btn-primary btn-lg btn-block mt-3 w-100">
+              Proceed to Payment
+            </button> --}}
+            <button type="submit" id="payBtn" form="checkoutForm" class="btn btn-primary btn-lg btn-block mt-3 w-100">
+              Proceed to Payment
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</section>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>

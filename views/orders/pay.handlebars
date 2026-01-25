@@ -1,0 +1,198 @@
+
+﻿
+@model ECommerceStore.Domain.Dtos.OrderDto
+
+@{
+    ViewBag.Title = "Order";
+
+}
+
+<div class="container mt-5 px-5">
+
+    <div class="mb-4">
+
+        <h2>Confirm order and pay</h2>
+        <span>please make the payment, after that you can enjoy all the features and benefits.</span>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-8">
+
+            @using (Html.BeginForm("Pay", "Order", FormMethod.Post, new { @id = "payOrderForm" }))
+            {
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+                <div class="card p-3">
+
+                    <h6 class="text-uppercase">Payment details</h6>
+
+
+                    <div class="inputbox mt-3">
+                        @Html.TextBoxFor(c => c.CardDetails.Name, new { @class = "form-control", @id = "name", @name = "name" })
+                        <span>Name on card</span>
+                        @Html.ValidationMessageFor(c => c.CardDetails.Name, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <div class="inputbox mt-3 mr-2">
+                                @Html.TextBoxFor(c => c.CardDetails.Number, new { @class = "form-control", @id = "number", @name = "number" })
+                                @Html.ValidationMessageFor(c => c.CardDetails.Number, "", new { @class = "text-danger" })
+                                <i class="fa fa-credit-card"></i> <span>Card Number</span>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="d-flex flex-row">
+
+
+                                <div class="inputbox mt-3 mr-2">
+                                    @Html.TextBoxFor(c => c.CardDetails.Expiry, new { @class = "form-control", @id = "expiry", @name = "expiry" })
+                                    @Html.ValidationMessageFor(c => c.CardDetails.Expiry, "", new { @class = "text-danger" })
+
+                                    <span>Expiry</span>
+                                </div>
+
+                                <div class="inputbox mt-3 mr-2">
+                                    @Html.TextBoxFor(c => c.CardDetails.CVV, new { @class = "form-control", @id = "cvv", @name = "cvv" })
+                                    @Html.ValidationMessageFor(c => c.CardDetails.Expiry, "", new { @class = "text-danger" })
+                                    <span>CVV</span>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="mt-4 mb-4">
+
+                        <h6 class="text-uppercase">Billing Address</h6>
+
+
+                        <div class="row mt-3">
+
+                            <div class="col-md-6">
+
+                                <div class="inputbox mt-3 mr-2">
+                                    @Html.TextBoxFor(c => c.CardDetails.BillingAddress.StreetAddress, new { @class = "form-control", @id = "addr", @name = "addr" })
+                                    @Html.ValidationMessageFor(c => c.CardDetails.BillingAddress.StreetAddress, "", new { @class = "text-danger" })
+
+                                    <span>Street Address</span>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <div class="inputbox mt-3 mr-2">
+                                    @Html.TextBoxFor(c => c.CardDetails.BillingAddress.City, new { @class = "form-control", @id = "city", @name = "city" })
+                                    @Html.ValidationMessageFor(c => c.CardDetails.BillingAddress.City, "", new { @class = "text-danger" })
+
+                                    <span>City</span>
+                                </div>
+
+
+                            </div>
+
+
+
+
+                        </div>
+
+
+                        <div class="row mt-2">
+
+                            <div class="col-md-6">
+
+                                <div class="inputbox mt-3 mr-2">
+                                    @Html.TextBoxFor(c => c.CardDetails.BillingAddress.State, new { @class = "form-control", @id = "state", @name = "state" })
+                                    @Html.ValidationMessageFor(c => c.CardDetails.BillingAddress.State, "", new { @class = "text-danger" })
+                                    <span>State/Province</span>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <div class="inputbox mt-3 mr-2">
+
+                                    @Html.TextBoxFor(c => c.CardDetails.BillingAddress.ZipCode, new { @class = "form-control", @id = "zipCode", @name = "zipCode" })
+                                    @Html.ValidationMessageFor(c => c.CardDetails.BillingAddress.ZipCode, "", new { @class = "text-danger" })
+                                    <span>Zip code</span>
+                                </div>
+
+
+                            </div>
+
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="mt-4 mb-4 d-flex justify-content-between">
+
+
+                    <span>Previous step</span>
+
+                    <button type="submit" class="btn btn-primary px-3"> Pay @Model.Total.ToString("C")</button>
+
+
+                </div>
+            }
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card bg-primary p-3 text-white mb-3">
+
+                <span>You have to pay</span>
+                <div class="d-flex flex-row align-items-end mb-3">
+
+                    <h1 class="mb-0 yellow">  @Model.Total.ToString("C")</h1>
+
+
+
+
+                    @*<h1 class="mb-0 yellow">$549</h1> <span>.99</span>*@
+                </div>
+
+                <span>Enjoy all the features and perk after you complete the payment</span>
+                <a href="#" class="yellow decoration">Know all the features</a>
+
+                <div class="hightlight">
+
+                    <span>100% Guaranteed support and update for the next 5 years.</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>

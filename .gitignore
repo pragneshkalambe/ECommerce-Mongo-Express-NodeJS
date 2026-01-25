@@ -1,0 +1,15 @@
+#dependencies
+node_modules/
+
+#env
+.env
+
+#uploads
+uploads/
+
+#build folder (if later adding react build )
+dist/
+
+#logs
+.DS_Store
+npm-debug.log

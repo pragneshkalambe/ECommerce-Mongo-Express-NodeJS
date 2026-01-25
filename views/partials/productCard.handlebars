@@ -1,0 +1,60 @@
+{{!-- <div class="card h-100 shadow-sm product-card"> --}}
+
+  {{!-- {{#each image}}
+    {{#if @first}}
+      <img src="{{this}}" class="card-img-top p-3 product-img">
+    {{/if}}
+  {{/each}}
+
+  <div class="card-body d-flex flex-column">
+    <h6 class="card-title text-capitalize">{{name}}</h6>
+
+    <p class="text-muted small text-truncate">
+      {{truncate_Desc description 40}}
+    </p>
+
+    <div class="mt-auto">
+      <div class="d-flex justify-content-between fw-semibold">
+        <span>₹{{price}}</span>
+        <span class="text-muted">{{category}}</span>
+      </div>
+
+      <div class="d-flex gap-2 mt-3">
+        <a href="/details/{{_id}}" class="btn btn-outline-primary w-50">Details</a>
+        <a href="/buy/{{_id}}" class="btn btn-danger w-50">Buy</a>
+      </div>
+    </div>
+  </div> --}}
+{{!-- //use below div --}}
+<div class="card text-black" data-id="{{this._id}}">
+                    {{#each this.image}}
+                    {{#if @first}}
+                    <img src="{{this}}" class="card-img-top">
+                    {{/if}}
+                    {{/each}}
+
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h5 class="card-title text-capitalize">{{this.name}}</h5>
+                            <p class="text-muted mb-4 text-truncate">{{truncate_Desc this.description 19}}</p>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <span>Price</span><span>{{this.price}}</span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <span>Category</span><span>{{this.category}}</span>
+                        </div>
+
+                        <div class="d-flex flex-row mt-3">
+                            <a href="/details/{{this._id}}" class="btn btn-primary flex-fill me-1">Details</a>
+                            <a href="/buy/{{this._id}}" class="btn btn-danger flex-fill ms-1">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+
+
+{{!-- </div> --}}
+
+

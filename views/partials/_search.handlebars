@@ -1,0 +1,327 @@
+{{!-- Linking SwiperJs CSS --}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<link rel="stylesheet" href="/style.css">
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", "sans-serifs";
+    }
+
+    body {
+        /* display: flex;
+        align-items: center;
+        justify-content: center; */
+        min-height: 100vh;
+        background: linear-gradient(#ECEFFE, #CED6FB);
+    }
+
+    .card-wrapper {
+        max-width: 1100px;
+        margin: 0px 60px 35px;
+        padding: 20px 10px;
+        overflow: hidden;
+        height: 420px;
+    }
+
+    .swiper-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .card-wrapper .swiper-pagination-bullet {
+        height: 13px;
+        width: 13px;
+        opacity: 0.5;
+        background: #5372F0;
+    }
+
+    .card-wrapper .swiper-pagination-bullet-active {
+        opacity: 1;
+    }
+
+    .card-wrapper .swiper-slide-button {
+        color: #5372F0;
+        margin-top: -35;
+    }
+
+    @media screen and (max-width:768px) {
+        .card-wrapper {
+            margin: 0 10px 25px;
+        }
+    }
+
+    .swiper {
+        position: relative;
+        width: 100%;
+    }
+
+    .card-wrapper .swiper-slide-button {
+        display: none;
+    }
+
+    .card-list .card-item {
+        list-style: none;
+    }
+
+    .card-list .card-item .card-link {
+        /*width: 400px;*/
+        user-select: none;
+        display: block;
+        background: #fff;
+        padding: 18px;
+        border-radius: 12px;
+        text-decoration: none;
+        border: 2px solid transparent;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
+        transition: 0.2s ease;
+    }
+
+
+    .card-list .card-item .card-link:hover {
+        border-color: #5372F0;
+    }
+
+
+
+    .card-list .card-link .badge {
+        color: #5372F0;
+        padding: 8px 16px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        margin: 16px 0 18px;
+        background: #DDE4FF;
+        width: fit-content;
+        border-radius: 50px;
+    }
+
+    .card-list .card-link .card-title {
+        font-size: 1.19rem;
+        color: #000;
+        font-weight: 600;
+    }
+
+    .card-list .card-link .card-button {
+        height: 35px;
+        width: 35px;
+        color: #5372F0;
+        border-radius: 50%;
+        margin: 30px 0 5px;
+        background: none;
+        cursor: pointer;
+        border: 2px solid #5372F0;
+        transform: rotate(-45deg);
+        transition: 0.4s ease;
+    }
+
+    .card-list .card-link:hover .card-button {
+        color: #fff;
+        background: #5372F0;
+
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+<div class="container">
+    {{!-- <div class="card-wrapper">
+        <ul class="card-list swiper-wrapper">
+
+            <li class="card-item swiper-slide">
+                <a class="card-link">
+                    {{#each imagePaths}} --}}
+                    {{!-- {{#if @first}} --}}
+                    {{!-- <img src="/{{this}}" alt=""> --}}
+                    {{!-- {{/if}} --}}
+                    {{!-- {{/each}}
+                    <p class="badge">Category : {{prodDetails.category}}</p>
+                    <h2 class="card-title">{{prodDetails.name}}</h2>
+                    <h3 class="card-title">Price : {{prodDetails.price}}</h3>
+                    <h3 class="card-title">Desc : {{prodDetails.description}}</h3> --}}
+                    {{!-- <h3 class="fa-solid fa-arrow-left"></h3> --}}
+                    {{!-- <button class="card-button fa-solid fa-arrow-right"></button>
+
+                </a>
+            </li>
+
+        </ul> --}}
+        {{!-- for pagination --}}
+        {{!-- <div class="swiper-pagination"></div> --}}
+
+        {{!-- for navigation --}}
+        {{!-- <div class="swiper-slide-button swiper-button-prev"></div>
+        <div class="swiper-slide-button  swiper-button-next"></div>
+
+    </div> --}}
+
+    <!-- Swiper -->
+    <div class="swiper card-wrapper">
+        <div class="swiper-wrapper">
+            {{#each allproducts.image}}
+            <div class="swiper-slide">
+                <img src="/{{this}}" class="card-image" />
+            </div>
+            {{/each}}
+        </div>
+
+        <!-- Pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- Navigation -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+
+    <!-- Product Details BELOW slider -->
+    {{!-- <div class="product-details">
+        <p class="badge">Category: {{prodDetails.category}}</p>
+        <div class="rating">
+            <div class="stars">
+                <span class="fa fa-star text-primary"></span>
+                <span class="fa fa-star text-primary"></span>
+                <span class="fa fa-star text-primary"></span>
+                <span class="fa fa-star text-primary"></span>
+                <span class="fa fa-star"></span>
+            </div>
+            <span class="review-no">41 reviews</span>
+        </div>
+        <h2>{{prodDetails.name}}</h2>
+        <h3>₹ {{prodDetails.price}}</h3>
+        <p>{{prodDetails.description}}</p>
+    </div>
+
+    --}}
+
+
+    <section class="product-details-wrapper">
+        <div class="product-card">
+
+            {{!-- <div class="product-grid"> --}}
+
+                <!-- LEFT : Swiper -->
+                {{!-- <div class="product-media">
+                    <!-- your existing swiper markup here -->
+                </div> --}}
+
+                <!-- RIGHT : Details -->
+                <div class="product-info">
+                    <div class="category" style="font-size: medium;"><b> Category: {{allproducts.category}} </b></div>
+
+                    <div class="rating">
+                        {{!-- ★★★★☆ --}}
+                        <span class="fa fa-star text-primary"></span>
+                        <span class="fa fa-star text-primary"></span>
+                        <span class="fa fa-star text-primary"></span>
+                        <span class="fa fa-star text-primary"></span>
+                        <span class="fa fa-star"></span>
+
+                    </div>
+
+                    <h1 class="product-title">{{allproducts.name}}</h1>
+
+                    <div class="price">Price: {{allproducts.price}}</div>
+
+                    <p class="description" style="font-size: medium;"> <b>
+                            Description : {{allproducts.description}}
+
+                        </b>
+                    </p>
+
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+            {{!-- </div> --}}
+
+        </div>
+    </section>
+
+
+
+
+
+    {{!-- <div class="card card-details" style="display:inline-block;">
+        <div class="container-fluid"> --}}
+            {{!-- {{#each prodDetails}} --}}
+            {{!-- {{#each imagePaths}}
+            <div class="wrapper row">
+                <ul> --}}
+                    {{!-- <li class="active"><img src="{{this}}" /></li> --}}
+                    {{!-- <li>
+                        <img src="/{{this}}" alt="">
+                    </li>
+                </ul>
+
+            </div>
+            {{/each}}
+        </div> --}}
+        {{!-- <div class="details col-md-6" style="display:inline-block;">
+            <h3 class="product-title">{{prodDetails.name}}</h3>
+            <div class="rating">
+                <div class="stars">
+                    <span class="fa fa-star text-primary"></span>
+                    <span class="fa fa-star text-primary"></span>
+                    <span class="fa fa-star text-primary"></span>
+                    <span class="fa fa-star text-primary"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+                <span class="review-no">41 reviews</span>
+            </div>
+            <p class="product-description">desc: {{prodDetails.description}}</p>
+            <h4 class="price">current price: <span class="text-primary">{{prodDetails.price}}</span></h4> <br>
+            <h4 class="product-category">product category: <span class="text-primary">{{prodDetails.category}}</span>
+            </h4>
+
+        </div> --}}
+
+
+
+        {{!--
+    </div> --}}
+
+    {{!-- {{/each}} --}}
+</div>
+</div>
+{{!-- {{/if}} --}}
+
+
+
+{{!-- testing --}}
+{{!-- <div class="rating">
+    <div class="stars">
+        <span class="fa fa-star text-primary"></span>
+        <span class="fa fa-star text-primary"></span>
+        <span class="fa fa-star text-primary"></span>
+        <span class="fa fa-star text-primary"></span>
+        <span class="fa fa-star"></span>
+    </div>
+    <span class="review-no">41 reviews</span>
+</div> --}}
+
+{{!-- <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+<h5 class="colors">
+    colors:
+    <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
+    <span class="color green"></span>
+    <span class="color blue"></span>
+</h5> --}}
+</div>
+
+{{!-- Linking swiperjs script --}}
+{{!--
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script> --}}
+<script src="/swiper-init.js"></script>

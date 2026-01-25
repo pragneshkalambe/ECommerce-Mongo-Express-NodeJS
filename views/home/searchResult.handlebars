@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+
+﻿
+@model IEnumerable<ECommerceStore.Domain.Dtos.ProductDto>
+
+@{
+    ViewBag.Title = "SearchResult";
+}
+
+<section style="background-color: #eee;">
+    <div class="container py-5">
+        <div class="row ">
+
+            @foreach (var product in Model)
+            {
+                <div class="col-md-8 col-lg-6 col-xl-4">
+                    <div class="card text-black">
+                        @*<i class="fa fa-apple fa-lg pt-3 pb-1 px-3"></i>*@
+
+                        @using (Html.BeginForm("AddToCart", "Cart"))
+                        {
+                            @Html.HiddenFor(p => product.ProductID)
+                            @Html.Hidden("returnUrl", Request.Url.PathAndQuery);
+
+                            @*@Html.ActionLink("", "AddToCart", "", new { @class="fas fa-shopping-cart fa-lg pt-3 pb-1 px-3" })*@
+                            <button type="submit" class="btn">
+                                <i class="fa fa-shopping-cart fa-lg pt-3 pb-1 px-3"></i>
+
+                            </button>
+                        }
+                        @*<i class="fas fa-shopping-cart fa-lg pt-3 pb-1 px-3"></i>*@
+                        <img src="@product.Image"
+                             class="card-img-top" alt="Apple Computer" />
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h5 class="card-title">Believing is seeing</h5>
+                                <p class="text-muted mb-4">@product.Name</p>
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-between">
+                                    <span>@product.Name </span><span>@product.Price.ToString("C") </span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>@product.Category</span>
+                                    @*<span>@product.Price</span>*@
+                                </div>
+                                @*<div class="d-flex justify-content-between">
+                                        <span>Vesa Mount Adapter</span><span>$199</span>
+                                    </div>*@
+                            </div>
+                            @*<div class="d-flex justify-content-between total font-weight-bold mt-4">
+                                    <span>Total</span><span>$7,197.00</span>
+                                </div>*@
+
+                            <div class="d-flex flex-row">
+                                @Html.ActionLink("Details", "Details", "Home", new { id = product.ProductID }, new { @class = "btn btn-primary flex-fill me-1", data_mdb_ripple_color = "dark" })
+
+                                @Html.ActionLink("Buy Now", "", "Home", new { id = product.ProductID }, new { @class = "btn btn-danger flex-fill me-1", data_mdb_ripple_color = "dark" })
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</section>

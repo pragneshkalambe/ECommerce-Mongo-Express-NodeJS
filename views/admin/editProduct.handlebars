@@ -1,0 +1,59 @@
+<div class="container mt-4">
+  <h3>Edit Product ✏</h3>
+
+  <form action="/api/admin/products/edit/{{product._id}}" method="POST" enctype="multipart/form-data">
+
+    <div class="mb-3">
+      <label>Name</label>
+      <input name="name" value="{{product.name}}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Price</label>
+      <input type="number" name="price" value="{{product.price}}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Category</label>
+      <input name="category" value="{{product.category}}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Brand</label>
+      <input name="brand" value="{{product.brand}}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Description</label>
+      <textarea name="description" class="form-control" required>{{product.description}}</textarea>
+    </div>
+
+    <div class="mb-3">
+      <label>Is Mobile?</label>
+      <select name="isMobile" id="isMobile" class="form-select" onchange="toggleCellular()">
+        <option value="false" {{#unless product.isMobile}}selected{{/unless}}>No</option>
+        <option value="true" {{#if product.isMobile}}selected{{/if}}>Yes</option>
+      </select>
+    </div>
+
+    <div class="mb-3 {{#unless product.isMobile}}d-none{{/unless}}" id="cellularDiv">
+      <label>Cellular Data</label>
+      <input name="cellularData" value="{{product.cellularData}}" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label>Upload New Images (optional)</label>
+      <input type="file" name="image" multiple class="form-control">
+    </div>
+
+    <button class="btn btn-primary">Update Product</button>
+
+  </form>
+</div>
+
+<script>
+  function toggleCellular() {
+    const val = document.getElementById("isMobile").value;
+    document.getElementById("cellularDiv").classList.toggle("d-none", val !== "true");
+  }
+</script>

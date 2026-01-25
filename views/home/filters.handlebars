@@ -1,0 +1,113 @@
+{{!-- <h6 class="fw-bold">Category</h6>
+<ul class="list-unstyled">
+  <li><input type="checkbox"> Mobile</li>
+  <li><input type="checkbox"> Laptop</li>
+  <li><input type="checkbox"> Electronics</li>
+</ul>
+
+<hr>
+
+<h6 class="fw-bold">Brand</h6>
+<ul class="list-unstyled">
+  <li><input type="checkbox"> Apple</li>
+  <li><input type="checkbox"> Samsung</li>
+  <li><input type="checkbox"> Asus</li>
+</ul>
+
+<hr> --}}
+
+<section style="background-color:#eee;cursor: pointer;">
+    <div class="container-fluid py-4">
+        <div class="row">
+
+            <!-- LEFT FILTER SIDEBAR -->
+            <div class="col-lg-2 col-md-2 d-none d-md-block">
+                <div class="bg-white p-3 rounded shadow-sm brands_div">
+                    {{!-- {{> filters }} --}}
+
+                    <ul class="list-unstyled brands_ul">
+                        <strong style="text-decoration: underline;">Brands:</strong>
+                        {{#each brands}}
+                        <li class="mb-2 brands_li">
+                            <label class="d-flex align-items-center gap-2">
+                                <input type="checkbox" class="brand-filter" data-brand="{{this.brand}}">
+                                {{this}}
+                            </label>
+                        </li>
+                        {{/each}}
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- RIGHT PRODUCTS -->
+            <div class="col-md-8">
+                <div class="row g-4">
+
+                    {{#if allproducts.hasError}}
+                    <div class="no-products-wrapper text-center">
+                        <img src="/product_not_found.jpeg" class="img-fluid">
+                    </div>
+                    {{else}}
+
+                    {{#each allproducts}}
+                    <div class="col-xl-4 col-lg-6 col-md-6">
+                        {{!-- {{> productCard this}} --}}
+
+                       <div class="card text-black" data-id="{{this._id}}">
+                    {{#each this.image}}
+                    {{#if @first}}
+                    <img src="/{{this}}" class="card-img-top">
+                    {{/if}}
+                    {{/each}}
+
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h5 class="card-title text-capitalize">{{this.name}}</h5>
+                            <p class="text-muted mb-4 text-truncate">{{truncate_Desc this.description 19}}</p>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <span>Price</span><span>{{this.price}}</span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <span>Category</span><span>{{this.category}}</span>
+                        </div>
+
+                        <div class="d-flex flex-row mt-3">
+                            <a href="/details/{{this._id}}" class="btn btn-primary flex-fill me-1">Details</a>
+                            <a href="/buy/{{this._id}}" class="btn btn-danger flex-fill ms-1">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                    </div>
+                    {{/each}}
+
+                    {{/if}}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{{!-- <script>
+
+let brands_ul = document.querySelector(".brands_ul");
+brands_ul.addEventListener("change",(e) => {
+  if (e.target.type === "checkbox") {
+    // alert("checked");
+    let li = e.target.closest("li");
+    console.log("li",li);
+    // let brandName = li.getAttribute("data-brand");
+    let brandName = e.target.dataset.brand;
+
+
+    window.location.href = `/BrandFilter/?brandName=${brandName}`;
+  }
+});
+</script> --}}
+{{!-- <h6 class="fw-bold">Price</h6>
+<input type="range" class="form-range"> --}}

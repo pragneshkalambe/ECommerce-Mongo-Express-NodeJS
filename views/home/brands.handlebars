@@ -1,0 +1,60 @@
+<section style="background-color:#eee;cursor: pointer;">
+    <div class="container-fluid py-4">
+        <div class="row">
+
+            <!-- LEFT FILTER SIDEBAR -->
+            <div class="col-lg-2 col-md-2 d-none d-md-block">
+                <div class="bg-white p-3 rounded shadow-sm brands_div">
+                    {{!-- {{> filters }} --}}
+
+                    <ul class="list-unstyled brands_ul">
+                        <strong style="text-decoration: underline;">Brands:</strong>
+                        {{#each brands}}
+                        <li class="mb-2 brands_li">
+                            <label class="d-flex align-items-center gap-2">
+                                <input type="checkbox" class="brand-filter" data-brand="{{this}}">
+                                {{this}}
+                            </label>
+                        </li>
+                        {{/each}}
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- RIGHT PRODUCTS -->
+            <div class="col-md-8">
+                <div class="row g-4">
+
+                    {{#if allproducts.hasError}}
+                    <div class="no-products-wrapper text-center">
+                        <img src="/product_not_found.jpeg" class="img-fluid">
+                    </div>
+                    {{else}}
+
+                    {{#each allproducts}}
+                    <div class="col-xl-4 col-lg-6 col-md-6">
+                        {{> productCard this}}
+                    </div>
+                    {{/each}}
+
+                    {{/if}}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<div class="text-center">
+    <button class="btn btn-outline-primary btn-lg w-25 m-2" data-bs-toggle="collapse"
+        data-bs-target="#collapseDailyDeal">
+        Click here to see todays special
+    </button>
+</div>
+
+<div class="collapse" id="collapseDailyDeal">
+    <div class="container py-4">
+        <div class="row dailyDeal g-4 justify-content-center"></div>
+    </div>
+</div>

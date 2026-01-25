@@ -1,0 +1,192 @@
+<section style="background-color: #eee;">
+    <div class="container py-5">
+
+        <div class="row">
+            <div class="col">
+                <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">User</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                            alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                        <h5 class="my-3"> @customer.FirstName @customer.LastName</h5>
+                     
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Full Name</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@customer.FirstName @customer.LastName</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Email</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@customer.EmailID</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Phone</p>
+                            </div>
+                            <div class="col-sm-9">
+                                @if (string.IsNullOrEmpty(@customer.PhoneNumber))
+                                {
+                                <p class="text-muted mb-0">Add Phone Number</p>
+
+                                }
+                                else
+                                {
+                                <p class="text-muted mb-0">@customer.PhoneNumber</p>
+
+                                }
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Mobile</p>
+                            </div>
+                            <div class="col-sm-9">
+                                @if (string.IsNullOrEmpty(@customer.MobileNumber))
+                                {
+                                <p class="text-muted mb-0">Add Mobile Number</p>
+
+                                }
+                                else
+                                {
+                                <p class="text-muted mb-0">@customer.MobileNumber</p>
+
+                                }
+                            </div>
+                        </div>
+                        <hr>
+
+                     
+                        @if (customer.Addresses.Count > 0)
+                        {
+                        <div class="row">
+                            @foreach (var addr in customer.Addresses)
+                            {
+                            <div class="col-md-6">
+                                <div class="card mb-4 mb-md-0">
+                                    <div class="card-body">
+
+                                        <p class="mb-4">
+                                            Address
+                                        </p>
+                                        <p class="mb-1" style="font-size: .77rem;">Address Line 1</p>
+                                        <div class="form-outline">
+                                            @Html.TextBoxFor(ad => addr.Address1, new { @class = "form-control
+                                            form-control-sm", @name = "address1", @placeholder = addr.Address1 ,
+                                            @readonly= true})
+
+                                        </div>
+
+                                        <p class="mt-4 mb-1" style="font-size: .77rem;">Address Line 2</p>
+                                        <div class="form-outline">
+                                            @Html.TextBoxFor(ad => addr.Address2, new { @class = "form-control
+                                            form-control-sm", @name = "address2", @placeholder = addr.Address2,
+                                            @readonly = true })
+                                        </div>
+                                        <p class="mt-4 mb-1" style="font-size: .77rem;">State</p>
+                                        <div class="form-outline">
+                                            @Html.TextBoxFor(ad => addr.State, new { @class = "form-control
+                                            form-control-sm", @name = "State", @placeholder = addr.State, @readonly =
+                                            true })
+                                            @*@addr.State*@
+                                        </div>
+                                        <p class="mt-4 mb-1" style="font-size: .77rem;">City</p>
+                                        <div class="form-outline">
+                                            @Html.TextBoxFor(ad => addr.City, new { @class = "form-control
+                                            form-control-sm", @name = "City", @placeholder = addr.City, @readonly = true
+                                            })
+                                            @*@addr.City*@
+                                        </div>
+                                        <p class="mt-4 mb-1" style="font-size: .77rem;">Zip Code</p>
+                                        <div class="form-outline mb-1">
+                                            @Html.TextBoxFor(ad => addr.ZipCode, new { @class = "form-control
+                                            form-control-sm", @name = "ZipCode", @placeholder = addr.ZipCode, @readonly
+                                            = true })
+                                            @*@addr.ZipCode*@
+                                        </div>
+
+                                        <p class="text-center">
+                                            @Html.ActionLink("Edit", "EditAddress", "Customer", new { id =
+                                            addr.AddressID }, new { @class = "btn btn-outline-primary float-end
+                                            button-color" })
+                                            @Html.ActionLink("Remove", "DeleteAddress", "Customer", new { id =
+                                            addr.AddressID }, new { @class = "btn btn-outline-primary float-end
+                                            button-color" })
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            }
+
+                        </div>
+                        }
+                        else
+                        {
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Address</p>
+                            </div>
+                            <div class="col-sm-9">
+
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <p class="text-uppercase fw-bold mb-3 text-font">Add new Address</p>
+                                        <div class="row">
+                                            @*<div class="col-md-4">
+                                                <p>your-email@gmail.com</p>
+                                            </div>*@
+                                            <div class="col-md-7">
+                                                @Html.ActionLink("Add", "AddAddress", "Customer", new { id =
+                                                customer.CustomerID }, new { @class = "btn btn-outline-primary float-end
+                                                button-color" })
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        }
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

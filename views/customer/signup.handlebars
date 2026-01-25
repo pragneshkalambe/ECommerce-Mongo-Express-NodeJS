@@ -1,0 +1,65 @@
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Customer Sign Up</h1>
+
+        {{!-- 🔴 ERROR MESSAGE --}}
+        {{#if errorMsg}}
+          <div class="alert alert-danger">
+            {{errorMsg}}
+          </div>
+        {{/if}}
+
+        <form class="form-control" id="signUpForm" method="POST" action="/signUp">
+
+            <div class="mb-3">
+                <label for="usrName" class="form-label">full name</label>
+                <input type="text" class="form-control" name="name" id="usrName"
+                       value="{{oldData.name}}">
+            </div>
+
+            <div class="mb-3">
+                <label for="usrEmail" class="form-label">email address</label>
+                <input type="email" name="email" class="form-control" id="usrEmail"
+                       value="{{oldData.email}}">
+            </div>
+
+            <div class="mb-3">
+                <label for="usrPassword" class="form-label">password</label>
+                <input type="password" name="password" class="form-control" id="usrPassword">
+            </div>
+            
+            <div class="mb-3">
+                <label for="usrMobile" class="form-label">mobile</label>
+                <input type="text" class="form-control" name="mobile" id="usrMobile"
+                       value="{{oldData.mobile}}">
+            </div>
+
+            <div class="mb-3">
+                <label for="usrCountry" class="form-label">country</label>
+                <input type="text" class="form-control" name="country" id="usrCountry"
+                       value="{{oldData.country}}">
+            </div>
+
+            <div class="mb-3">
+                <label for="usrState" class="form-label">state</label>
+                <input type="text" class="form-control" name="state" id="usrState"
+                       value="{{oldData.state}}">
+            </div>
+
+            <div class="mb-3">
+                <label for="usrCity" class="form-label">city</label>
+                <input type="text" class="form-control" name="city" id="usrCity"
+                       value="{{oldData.city}}">
+            </div>
+            
+            <div class="mb-3">
+                <label for="usrZipcode" class="form-label">zipcode</label>
+                <input type="text" class="form-control" name="zipcode" id="usrZipcode"
+                       value="{{oldData.zipcode}}">
+            </div>
+
+            <button type="submit" class="btn btn-primary">submit</button>
+
+        </form>
+    </div>
+</div>

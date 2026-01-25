@@ -1,0 +1,132 @@
+<style>
+    * {
+        font-family: sans-serifs;
+    }
+</style>
+{{!-- <section style="background-color: #eee;">
+    <div class="container py-5">
+        <div class="row">
+            {{#if allproducts.hasError}}
+
+            <div class="no-products-wrapper">
+                <img src="/product_not_found.jpeg" alt="No products" class="no-products-image" />
+            </div>
+ 
+            {{else}}
+            
+
+            {{#each allproducts}}
+
+            <div class="col-md-8 col-lg-6 col-xl-4 mb-4 px-3" style="cursor: pointer;" id="product">
+                <div class="card text-black" data-id="{{this._id}}">
+                    {{#each this.image}}
+                    {{#if @first}}
+                    <img src="{{this}}" class="card-img-top">
+                    {{/if}}
+                    {{/each}}
+
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h5 class="card-title text-capitalize">{{this.name}}</h5>
+                            <p class="text-muted mb-4 text-truncate">{{truncate_Desc this.description 19}}</p>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <span>Price</span><span>{{this.price}}</span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <span>Category</span><span>{{this.category}}</span>
+                        </div>
+
+                        <div class="d-flex flex-row mt-3">
+                            <a href="/details/{{this._id}}" class="btn btn-primary flex-fill me-1">Details</a>
+                            <a href="/buy/{{this._id}}" class="btn btn-danger flex-fill ms-1">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+            {{/if}}
+
+        </div>
+    </div>
+
+</section>
+
+<div class="text-center">
+  <button
+    class="btn btn-outline-primary btn-lg w-25 m-2"
+    data-bs-toggle="collapse"
+    data-bs-target="#collapseDailyDeal">
+    Click here to see todays special
+  </button>
+</div>
+
+<div class="collapse" id="collapseDailyDeal">
+    <div class="container py-4">
+        <div class="row dailyDeal g-4 justify-content-center"></div>
+    </div>
+</div>
+ --}}
+
+<section style="background-color:#eee;">
+  <div class="container-fluid py-4" style="cursor: pointer;">
+  <div class="row justify-content-center">
+
+    <!-- PRODUCTS COLUMN -->
+    <div class="col-md-8">
+      <div class="row g-4">
+
+        {{#if allproducts.hasError}}
+          <div class="no-products-wrapper text-center">
+            <img src="/product_not_found.jpeg" class="img-fluid">
+          </div>
+        {{else}}
+
+          {{#each allproducts}}
+            <div class="col-xl-4 col-lg-6 col-md-6">
+              {{> productCard }}
+            </div>
+          {{/each}}
+
+        {{/if}}
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</section>
+<div class="text-center" style="background-color: #eee;">
+  <button
+    class="btn btn-outline-primary btn-lg w-25 m-2"
+    data-bs-toggle="collapse"
+    data-bs-target="#collapseDailyDeal">
+    Click here to see todays special
+  </button>
+</div>
+
+<div class="collapse" id="collapseDailyDeal" style="background-color: #3b71ca;">
+    <div class="container py-4">
+        <div class="row g-4 justify-content-center" id="dailyDeal"></div>
+    </div>
+</div>
+
+{{#if success}}
+<script>
+  Toastify({
+    text: "{{success}}",
+    duration: 3000,
+    gravity: "top",
+    position: "right",
+    backgroundColor: "linear-gradient(to right,#00b09b,#96c93d)"
+  }).showToast();
+</script>
+{{/if}}
+
+
+
+
+

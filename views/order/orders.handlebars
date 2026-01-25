@@ -1,0 +1,40 @@
+<section class="container mt-5">
+
+  <h3 class="mb-4">My Orders</h3>
+
+  {{#if orders.length}}
+
+    {{#each orders}}
+      <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+
+          <div class="d-flex justify-content-between">
+            <strong>Order ID:</strong> {{this._id}}
+            <span class="badge bg-info">{{this.orderStatus}}</span>
+          </div>
+
+          <p class="mb-1">Amount: ₹{{this.totalAmount}}</p>
+          <p class="mb-1">Payment: {{this.paymentStatus}}</p>
+          <p class="mb-2">Method: {{this.paymentMethod}}</p>
+
+          <hr>
+
+          {{#each this.items}}
+            <div class="d-flex align-items-center mb-2">
+              <img src="/{{this.image}}" width="50" class="me-2">
+              <div>
+                <div>{{this.name}}</div>
+                <small>Qty: {{this.quantity}}</small>
+              </div>
+            </div>
+          {{/each}}
+
+        </div>
+      </div>
+    {{/each}}
+
+  {{else}}
+    <p>No orders found.</p>
+  {{/if}}
+
+</section>

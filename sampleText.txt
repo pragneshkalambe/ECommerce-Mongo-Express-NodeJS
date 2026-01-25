@@ -1,0 +1,77 @@
+const filterBy = async (data, filterBy) => {
+    let queryData = data;
+    // console.log("Category : ",category);
+    if (filterBy === "products") {
+        let filteredProducts = await Product.findOne(
+            { name: {$regex : queryData , $options : "i"} },
+        ).lean();
+        console.log("in filterby = products: ", filteredProducts);
+        if (filteredProducts) {
+            return filteredProducts;
+        }
+    }
+
+const http = require("http");
+const express = require("express");
+const path = require("path");
+const { Server } = require("socket.io");
+
+const app = express();
+const server = http.createServer(app);
+
+const io = new Server(server);
+
+//socket IO
+io.on("connection", (socket) => {
+    //   console.log("New User has connected : ",socket.id);
+    socket.on('user-message', message => {
+         console.log("App.js user-message on");
+        // this will emit the event to all connected sockets
+        io.emit('messageEvent', message);
+         console.log("in app.js messageEvent emitted");
+
+
+    });
+});
+
+db.products.aggregate([
+    {$sample:{size:3}}
+])
+
+db.products.aggregate([
+    { $group:{
+        _id:null,
+        brands:{$addToSet:"$brand"}
+    }
+    },
+    {
+        $project:{
+            _id:0,
+        brands:1
+    }
+    }
+])
+////////////////////////////////////////////////////////////////////////////
+{
+  _id: "...",
+  customer: ObjectId,
+  items: [
+    {
+      product: ObjectId,
+      name: "iPhone 14",
+      price: 70000,
+      quantity: 2,
+      image: "/img/iphone.jpg"
+    }
+  ],
+  shippingAddress: {
+    city: "Nagpur",
+    state: "MH",
+    country: "India",
+    zipcode: "440001"
+  },
+  totalAmount: 140000,
+  paymentMethod: "ONLINE",
+  paymentStatus: "PAID",
+  orderStatus: "PLACED"
+}

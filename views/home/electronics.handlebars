@@ -1,0 +1,25 @@
+<div class="container">
+    {{!-- //card-wrapper
+    //swiper-wrapper
+    //swiper-slide
+    --}}
+
+    <div class="swiper card-wrapper">
+        <div class="swiper-wrapper d-flex justify-content-center" style="cursor: pointer;">
+             {{#each electronics}}
+            <div class="swiper-slide">
+                <img src="{{this.path}}" class="card-image"/>
+            </div>
+            <div>
+                <span><strong>{{this.name}}</strong></span>
+
+            </div>
+            {{/each}}
+        </div>
+        
+        <div class="swiper-pagination"></div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+</div>

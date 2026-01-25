@@ -1,0 +1,40 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.0",
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
+    "connect-mongo": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.3",
+    "express-session": "^1.18.2",
+    "fontawesome": "^5.6.3",
+    "joi": "^18.0.1",
+    "jsonwebtoken": "^9.0.3",
+    "lodash": "^4.17.21",
+    "mdb-ui-kit": "^9.3.0",
+    "mongoose": "^8.19.2",
+    "multer": "^2.0.2",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "razorpay": "^2.9.6",
+    "socket.io": "^4.8.3",
+    "swiper": "^12.0.3",
+    "toastify-js": "^1.12.0"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^7.1.0"
+  }
+}
