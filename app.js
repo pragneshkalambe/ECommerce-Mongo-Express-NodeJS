@@ -5,6 +5,7 @@ database();
 
 const express = require("express");
 const app = express();
+app.set("trust proxy", 1);
 const path = require('path');
 const handlebars = require('express-handlebars');
 const session = require('express-session');
