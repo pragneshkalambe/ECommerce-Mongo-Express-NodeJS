@@ -298,6 +298,29 @@
     margin-bottom: 0.4rem; /* reduce space below image */
 
 }
+
+/* for live link */
+.card-img-top {
+    height: 200px;
+    width: 100%;
+    object-fit: contain;   /* show full image */
+    padding: 10px;
+    background: #f8f9fa;   /* light bg for consistency */
+}
+
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 /* reduce card body padding */
 .card-body {
     padding-top: 0.5rem;
