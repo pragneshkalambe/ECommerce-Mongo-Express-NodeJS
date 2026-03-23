@@ -8,7 +8,7 @@ const app = express();
 const path = require('path');
 const handlebars = require('express-handlebars');
 const session = require('express-session');
-const MongoStore = require("connect-mongo");
+const MongoStore = require("connect-mongo").default;
 app.set("trust proxy", 1);
 // const jwt = require('jsonwebtoken');
 const productController = require('./controllers/productController');
