@@ -1,4 +1,6 @@
-var socket = io();
+const socket = io({
+    withCredentials: true
+});
 // let searchProd = document.getElementById("searchProduct");
 
 // searchProd.addEventListener("submit",(e) => {

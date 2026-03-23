@@ -177,8 +177,8 @@ const sessionMiddleware = session({
     mongoUrl: process.env.MONGO_URI, // use your Atlas URI
   }),
   cookie: { maxAge: 10 * 60 * 1000,
-    secure: true,          // ✅ VERY IMPORTANT
-    sameSite: "none",  
+     secure: process.env.NODE_ENV === "production", // 🔥 dynamic
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
      httpOnly: true,
    }//set 5 minutes
 });
@@ -508,6 +508,10 @@ io.on("connection", socket => {
 
 //to read cart
 app.get("/cart", async (req, res) => {
+
+  console.log("Sessiion ID:",req.sessionID);
+  console.log("Sessiion DATA:",req.session);
+
   const cart = req.session.cart || [];
 
   // 🔴 EMPTY CART
