@@ -5,10 +5,11 @@ database();
 
 const express = require("express");
 const app = express();
-app.set("trust proxy", 1);
 const path = require('path');
 const handlebars = require('express-handlebars');
 const session = require('express-session');
+const MongoStore = require("connect-mongo");
+app.set("trust proxy", 1);
 // const jwt = require('jsonwebtoken');
 const productController = require('./controllers/productController');
 const productServices = require('./services/productServices');
@@ -171,8 +172,14 @@ app.use("/toastify", express.static(path.join(__dirname, "node_modules/toastify-
 const sessionMiddleware = session({
   secret: "cart-session",
   resave: false,
-  saveUninitialized: true,
-  cookie: { maxAge: 10 * 60 * 1000 }//set 5 minutes
+  saveUninitialized: false,
+   store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI, // use your Atlas URI
+  }),
+  cookie: { maxAge: 10 * 60 * 1000,
+    secure:false,
+     httpOnly: true,
+   }//set 5 minutes
 });
 
 app.use(sessionMiddleware);
@@ -811,7 +818,7 @@ app.post("/place-order", async (req, res) => {
     //  res.redirect(`/payment/${placeOrder._id}`);
 
   } catch (error) {
-    console.error(error.message);
+    console.error("error in /place order:",error.message);
     res.status(500).json({ error: "Order failed" });
 
   }
@@ -853,7 +860,7 @@ app.post("/verify-payment", async (req, res) => {
     }
 
   } catch (error) {
-    console.log(error.message);
+    console.log("Error in verify payment : ",error.message);
     res.json({ success: false });
   }
 });
