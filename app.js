@@ -177,7 +177,8 @@ const sessionMiddleware = session({
     mongoUrl: process.env.MONGO_URI, // use your Atlas URI
   }),
   cookie: { maxAge: 10 * 60 * 1000,
-    secure:false,
+    secure: true,          // ✅ VERY IMPORTANT
+    sameSite: "none",  
      httpOnly: true,
    }//set 5 minutes
 });
