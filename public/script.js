@@ -1,5 +1,6 @@
-const socket = io({
-    withCredentials: true
+const socket = io(window.location.origin,{
+    withCredentials: true,
+    transports: ["websocket"]
 });
 // let searchProd = document.getElementById("searchProduct");
 
@@ -52,7 +53,7 @@ let signUp = document.getElementById("signUp");
 document.querySelectorAll("#incrementBtn").forEach(btn => {
     btn.addEventListener("click", function () {
         let card = this.closest(".cart-item");
-        let qtyInput = Number(card.querySelector(".qtyInput").value);
+        // let qtyInput = Number(card.querySelector(".qtyInput").value); //commented
         let price = card.querySelector(".prod_price");
         let priceSpan = card.querySelector(".priceValue");
 
@@ -64,7 +65,8 @@ document.querySelectorAll("#incrementBtn").forEach(btn => {
             return alert("quantity exceeded");
         }
 
-        qtyInput = qty;
+        // qtyInput = qty; //commented
+        card.querySelector(".qtyInput").value = qty;
         let currentPrice = parseInt(price.getAttribute("data-price"));
 
         let totalPrice = currentPrice * qty;

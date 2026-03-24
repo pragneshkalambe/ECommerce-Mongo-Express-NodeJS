@@ -173,6 +173,7 @@ const sessionMiddleware = session({
   secret: "cart-session",
   resave: false,
   saveUninitialized: false,
+  proxy : true,
    store: MongoStore.create({
     mongoUrl: process.env.MONGO_URI, // use your Atlas URI
   }),
@@ -383,11 +384,16 @@ app.post("/signUp", validateSignup, customerController.custSignUp);
 // });
 
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server,{
+  cors : {
+    origin : process.env.CLIENT_URL,
+    credentials : true
+  }
+});
 
 io.use((socket, next) => {
   //sharing session with middleware
-  sessionMiddleware(socket.request, {}, next);
+  sessionMiddleware(socket.request, socket.request.res || {}, next);
 });
 
 const port = 3000;
@@ -395,6 +401,7 @@ const port = 3000;
 //connecting socket
 io.on("connection", socket => {
 
+  console.log("SOCKET SESSION ID:", socket.request.sessionID);
   socket.on("addedToCart", (data, callback) => {
     const session = socket.request.session;
 
@@ -509,8 +516,8 @@ io.on("connection", socket => {
 //to read cart
 app.get("/cart", async (req, res) => {
 
-  console.log("Sessiion ID:",req.sessionID);
-  console.log("Sessiion DATA:",req.session);
+  console.log("Sessiion ID in cart:",req.sessionID);
+  console.log("Sessiion DATA in cart:",req.session);
 
   const cart = req.session.cart || [];
 
