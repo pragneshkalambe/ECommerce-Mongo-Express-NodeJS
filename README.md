@@ -104,17 +104,6 @@ npm install
 
 Create a `.env` file:
 
-```env
-PORT=5000
-
-MONGO_URI=your_mongodb_connection_string
-
-SESSION_SECRET=your_session_secret
-
-RAZORPAY_KEY_ID=your_razorpay_key_id
-RAZORPAY_SECRET=your_razorpay_secret
-```
-
 ### Run Application
 
 ```bash
